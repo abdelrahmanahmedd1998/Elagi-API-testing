@@ -90,3 +90,8 @@ While testing the ELAGI API, I noticed a few issues worth documenting:
 
 These bugs highlight potential mismatches between frontend validation and backend enforcement.
 
+## Author
+  -Abdelrahman Ahmed Mohamed
+  -Postman API Tester
+  -GitHub: [https://github.com/abdelrahmanahmedd1998]
+

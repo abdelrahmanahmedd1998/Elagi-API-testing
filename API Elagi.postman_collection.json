@@ -1,0 +1,1973 @@
+{
+	"info": {
+		"_postman_id": "0140e33c-7a6e-4a0b-9b73-2447719855ac",
+		"name": "API Elagi",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "42349322"
+	},
+	"item": [
+		{
+			"name": "Authontication",
+			"item": [
+				{
+					"name": "User Registration",
+					"item": [
+						{
+							"name": "Register",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"let randomnum =Math.floor((Math.random() *1000)+1);\r",
+											"pm.environment.set(\"Email\", \"abdo\" + randomnum + \"@gmail.com\");\r",
+											"pm.environment.set(\"Name\",\"Abdo ahmed\");\r",
+											"pm.environment.set(\"Password\",\"123456789\");\r",
+											"pm.environment.set(\"ConfPassword\",pm.environment.get(\"Password\"));\r",
+											"pm.environment.set(\"PhonenNum\" ,\"01205773343\");\r",
+											"\r",
+											"\r",
+											"\r",
+											"\r",
+											"\r",
+											"\r",
+											"\r",
+											"\r",
+											"\r",
+											"\r",
+											"\r",
+											"pm.environment.set(\"CoPass\",pm.environment.get(\"Password\"))"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"pm.test(\"Response time is less than 1000ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+											"});\r",
+											"pm.test(\"Verify that OTP sent to email\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.message).to.eql(\"OTP sent to email. Please verify to complete registration.\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "accept",
+										"value": "application/json, text/plain, */*"
+									},
+									{
+										"key": "accept-language",
+										"value": "en"
+									},
+									{
+										"key": "cache-control",
+										"value": "no-cache"
+									},
+									{
+										"key": "content-type",
+										"value": "application/json"
+									},
+									{
+										"key": "origin",
+										"value": "https://elagi.semicorner.com"
+									},
+									{
+										"key": "pragma",
+										"value": "no-cache"
+									},
+									{
+										"key": "priority",
+										"value": "u=1, i"
+									},
+									{
+										"key": "referer",
+										"value": "https://elagi.semicorner.com/register"
+									},
+									{
+										"key": "sec-ch-ua",
+										"value": "\"Not)A;Brand\";v=\"8\", \"Chromium\";v=\"138\", \"Google Chrome\";v=\"138\""
+									},
+									{
+										"key": "sec-ch-ua-mobile",
+										"value": "?0"
+									},
+									{
+										"key": "sec-ch-ua-platform",
+										"value": "\"Windows\""
+									},
+									{
+										"key": "sec-fetch-dest",
+										"value": "empty"
+									},
+									{
+										"key": "sec-fetch-mode",
+										"value": "cors"
+									},
+									{
+										"key": "sec-fetch-site",
+										"value": "same-origin"
+									},
+									{
+										"key": "user-agent",
+										"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36"
+									},
+									{
+										"key": "Cookie",
+										"value": "i18next=en"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\r\n    \"fullname\": \"{{Name}}\",\r\n    \"email\": \"{{Email}}\",\r\n    \"phone\": \"{{Phonenum}}\",\r\n    \"password\": \"{{Password}}\",\r\n    \"password_confirmation\": \"{{ConfPassword}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "https://elagi.semicorner.com/api/register"
+							},
+							"response": []
+						},
+						{
+							"name": "OTP",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"pm.test(\"Your test name\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.message).to.eql(\"OTP verified successfully. Account created.\");\r",
+											"});\r",
+											"pm.test(\"Response time is less than 1000ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"packages": {},
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "accept",
+										"value": "application/json, text/plain, */*"
+									},
+									{
+										"key": "accept-language",
+										"value": "en"
+									},
+									{
+										"key": "cache-control",
+										"value": "no-cache"
+									},
+									{
+										"key": "content-type",
+										"value": "application/json"
+									},
+									{
+										"key": "origin",
+										"value": "https://elagi.semicorner.com"
+									},
+									{
+										"key": "pragma",
+										"value": "no-cache"
+									},
+									{
+										"key": "priority",
+										"value": "u=1, i"
+									},
+									{
+										"key": "referer",
+										"value": "https://elagi.semicorner.com/OTP"
+									},
+									{
+										"key": "sec-ch-ua",
+										"value": "\"Not)A;Brand\";v=\"8\", \"Chromium\";v=\"138\", \"Google Chrome\";v=\"138\""
+									},
+									{
+										"key": "sec-ch-ua-mobile",
+										"value": "?0"
+									},
+									{
+										"key": "sec-ch-ua-platform",
+										"value": "\"Windows\""
+									},
+									{
+										"key": "sec-fetch-dest",
+										"value": "empty"
+									},
+									{
+										"key": "sec-fetch-mode",
+										"value": "cors"
+									},
+									{
+										"key": "sec-fetch-site",
+										"value": "same-origin"
+									},
+									{
+										"key": "user-agent",
+										"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36"
+									},
+									{
+										"key": "Cookie",
+										"value": "i18next=en"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"{{Email}}\",\r\n    \"otp\": \"123456\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "https://elagi.semicorner.com/api/verify-otp"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Login",
+					"item": [
+						{
+							"name": "Login",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let resp =pm.response.json();\r",
+											"pm.environment.set(\"Token\" ,resp.token)\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"pm.test(\"Response time is less than 1000ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+											"});\r",
+											"pm.test(\"Successufully loging in\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.message).to.eql(\"messages.login_success\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "accept",
+										"value": "application/json, text/plain, */*"
+									},
+									{
+										"key": "accept-language",
+										"value": "en"
+									},
+									{
+										"key": "content-type",
+										"value": "application/json"
+									},
+									{
+										"key": "origin",
+										"value": "https://elagi.semicorner.com"
+									},
+									{
+										"key": "priority",
+										"value": "u=1, i"
+									},
+									{
+										"key": "referer",
+										"value": "https://elagi.semicorner.com/login"
+									},
+									{
+										"key": "sec-ch-ua",
+										"value": "\"Not)A;Brand\";v=\"8\", \"Chromium\";v=\"138\", \"Microsoft Edge\";v=\"138\""
+									},
+									{
+										"key": "sec-ch-ua-mobile",
+										"value": "?0"
+									},
+									{
+										"key": "sec-ch-ua-platform",
+										"value": "\"Windows\""
+									},
+									{
+										"key": "sec-fetch-dest",
+										"value": "empty"
+									},
+									{
+										"key": "sec-fetch-mode",
+										"value": "cors"
+									},
+									{
+										"key": "sec-fetch-site",
+										"value": "same-origin"
+									},
+									{
+										"key": "user-agent",
+										"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0"
+									},
+									{
+										"key": "Cookie",
+										"value": "i18next=en"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"{{Email}}\",\r\n    \"password\": \"123456789\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "https://elagi.semicorner.com/api/login"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Reset password",
+					"item": [
+						{
+							"name": "send OTP reset",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 1000ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Verify that OTP sent successfully\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.message).to.eql(\"OTP generated successfully.\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "accept",
+										"value": "application/json, text/plain, */*"
+									},
+									{
+										"key": "accept-language",
+										"value": "en"
+									},
+									{
+										"key": "cache-control",
+										"value": "no-cache"
+									},
+									{
+										"key": "content-type",
+										"value": "application/json"
+									},
+									{
+										"key": "origin",
+										"value": "https://elagi.semicorner.com"
+									},
+									{
+										"key": "pragma",
+										"value": "no-cache"
+									},
+									{
+										"key": "priority",
+										"value": "u=1, i"
+									},
+									{
+										"key": "referer",
+										"value": "https://elagi.semicorner.com/forget"
+									},
+									{
+										"key": "sec-ch-ua",
+										"value": "\"Not)A;Brand\";v=\"8\", \"Chromium\";v=\"138\", \"Google Chrome\";v=\"138\""
+									},
+									{
+										"key": "sec-ch-ua-mobile",
+										"value": "?0"
+									},
+									{
+										"key": "sec-ch-ua-platform",
+										"value": "\"Windows\""
+									},
+									{
+										"key": "sec-fetch-dest",
+										"value": "empty"
+									},
+									{
+										"key": "sec-fetch-mode",
+										"value": "cors"
+									},
+									{
+										"key": "sec-fetch-site",
+										"value": "same-origin"
+									},
+									{
+										"key": "user-agent",
+										"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36"
+									},
+									{
+										"key": "Cookie",
+										"value": "i18next=en"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"{{Email}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "https://elagi.semicorner.com/api/forgot-password"
+							},
+							"response": []
+						},
+						{
+							"name": "Reset it",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.environment.set(\"New Password\",\"123456789\");"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"pm.test(\"Response time is less than 1000ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+											"});\r",
+											"pm.test(\"Verify that the user can Reset Password successfully\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.message).to.eql(\"Password has been reset successfully\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "accept",
+										"value": "application/json, text/plain, */*"
+									},
+									{
+										"key": "accept-language",
+										"value": "en"
+									},
+									{
+										"key": "cache-control",
+										"value": "no-cache"
+									},
+									{
+										"key": "content-type",
+										"value": "application/json"
+									},
+									{
+										"key": "origin",
+										"value": "https://elagi.semicorner.com"
+									},
+									{
+										"key": "pragma",
+										"value": "no-cache"
+									},
+									{
+										"key": "priority",
+										"value": "u=1, i"
+									},
+									{
+										"key": "referer",
+										"value": "https://elagi.semicorner.com/reset"
+									},
+									{
+										"key": "sec-ch-ua",
+										"value": "\"Not)A;Brand\";v=\"8\", \"Chromium\";v=\"138\", \"Google Chrome\";v=\"138\""
+									},
+									{
+										"key": "sec-ch-ua-mobile",
+										"value": "?0"
+									},
+									{
+										"key": "sec-ch-ua-platform",
+										"value": "\"Windows\""
+									},
+									{
+										"key": "sec-fetch-dest",
+										"value": "empty"
+									},
+									{
+										"key": "sec-fetch-mode",
+										"value": "cors"
+									},
+									{
+										"key": "sec-fetch-site",
+										"value": "same-origin"
+									},
+									{
+										"key": "user-agent",
+										"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36"
+									},
+									{
+										"key": "Cookie",
+										"value": "i18next=en"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"email\":\"{{Email}}\",\"otp\":\"123456\",\"newPassword\":\"{{New Password}}\"}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "https://elagi.semicorner.com/api/reset-password"
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Profile",
+			"item": [
+				{
+					"name": "Get profile info",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let ID =pm.response.json();\r",
+									"pm.environment.set(\"I\", ID.id);\r",
+									"let storedID = pm.environment.get(\"I\");\r",
+									"\r",
+									"let Nae=pm.response.json().name;\r",
+									"pm.environment.set(\"Nae\",Nae)\r",
+									"let storedname=pm.environment.get(\"Nae\")\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Verify that the user id is clear\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.id).to.eql(storedID);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 1000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+									"});\r",
+									"pm.test(\"Verify that the user name is clear\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.name).to.eql(storedname);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/json, text/plain, */*"
+							},
+							{
+								"key": "accept-language",
+								"value": "en"
+							},
+							{
+								"key": "authorization",
+								"value": "Bearer {{Token}}"
+							},
+							{
+								"key": "cache-control",
+								"value": "no-cache"
+							},
+							{
+								"key": "pragma",
+								"value": "no-cache"
+							},
+							{
+								"key": "priority",
+								"value": "u=1, i"
+							},
+							{
+								"key": "referer",
+								"value": "https://elagi.semicorner.com/profile"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Not)A;Brand\";v=\"8\", \"Chromium\";v=\"138\", \"Google Chrome\";v=\"138\""
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Windows\""
+							},
+							{
+								"key": "sec-fetch-dest",
+								"value": "empty"
+							},
+							{
+								"key": "sec-fetch-mode",
+								"value": "cors"
+							},
+							{
+								"key": "sec-fetch-site",
+								"value": "same-origin"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36"
+							},
+							{
+								"key": "Cookie",
+								"value": "i18next=en"
+							}
+						],
+						"url": "https://{{URL }}/api/user"
+					},
+					"response": []
+				},
+				{
+					"name": "Change name",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"newname\" ,\"ABDOO\")"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.environment.set(\"newname\" ,\"ABDOO\")\r",
+									"let fullname = pm.environment.get(\"newname\");\r",
+									"\r",
+									"\r",
+									"pm.test(\"Response time is less than 1000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+									"});\r",
+									"pm.test(\"Your test name\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.user.name).to.eql(fullname);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/json, text/plain, */*"
+							},
+							{
+								"key": "accept-language",
+								"value": "en"
+							},
+							{
+								"key": "authorization",
+								"value": "Bearer {{Token}}"
+							},
+							{
+								"key": "cache-control",
+								"value": "no-cache"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json"
+							},
+							{
+								"key": "origin",
+								"value": "https://elagi.semicorner.com"
+							},
+							{
+								"key": "pragma",
+								"value": "no-cache"
+							},
+							{
+								"key": "priority",
+								"value": "u=1, i"
+							},
+							{
+								"key": "referer",
+								"value": "https://elagi.semicorner.com/profile"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Not)A;Brand\";v=\"8\", \"Chromium\";v=\"138\", \"Google Chrome\";v=\"138\""
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Windows\""
+							},
+							{
+								"key": "sec-fetch-dest",
+								"value": "empty"
+							},
+							{
+								"key": "sec-fetch-mode",
+								"value": "cors"
+							},
+							{
+								"key": "sec-fetch-site",
+								"value": "same-origin"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36"
+							},
+							{
+								"key": "Cookie",
+								"value": "i18next=en"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 2851,\r\n    \"name\": \"{{newname}}\",\r\n    \"email\": \"{{Email}}\",\r\n    \"otp\": null,\r\n    \"email_verified_at\": null,\r\n    \"phone\": \"01205773341\",\r\n    \"created_at\": \"2025-07-15T21:42:31.000000Z\",\r\n    \"updated_at\": \"2025-07-20T16:42:50.000000Z\",\r\n    \"otp_code\": null,\r\n    \"otp_expires_at\": null,\r\n    \"is_admin\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://elagi.semicorner.com/api/user/update"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Medicines",
+			"item": [
+				{
+					"name": "Medicenes 3rd page",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 1000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+									"});\r",
+									"pm.test(\"Verify the name of the first product is correct\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.data[0].name).to.eql(\"Macro Panthenol Cream 50 gm\");\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/json, text/plain, */*"
+							},
+							{
+								"key": "accept-language",
+								"value": "en"
+							},
+							{
+								"key": "cache-control",
+								"value": "no-cache"
+							},
+							{
+								"key": "pragma",
+								"value": "no-cache"
+							},
+							{
+								"key": "priority",
+								"value": "u=1, i"
+							},
+							{
+								"key": "referer",
+								"value": "https://elagi.semicorner.com/medicines"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Not)A;Brand\";v=\"8\", \"Chromium\";v=\"138\", \"Google Chrome\";v=\"138\""
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Windows\""
+							},
+							{
+								"key": "sec-fetch-dest",
+								"value": "empty"
+							},
+							{
+								"key": "sec-fetch-mode",
+								"value": "cors"
+							},
+							{
+								"key": "sec-fetch-site",
+								"value": "same-origin"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36"
+							},
+							{
+								"key": "Cookie",
+								"value": "i18next=en"
+							}
+						],
+						"url": {
+							"raw": "https://elagi.semicorner.com/api/medicines?page=3&sort=",
+							"protocol": "https",
+							"host": [
+								"elagi",
+								"semicorner",
+								"com"
+							],
+							"path": [
+								"api",
+								"medicines"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "3"
+								},
+								{
+									"key": "sort",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "products sorted",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 1000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+									"});\r",
+									"pm.test(\"Verify that products are sorted from lower to higher\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.current_page).to.eql(1);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/json, text/plain, */*"
+							},
+							{
+								"key": "accept-language",
+								"value": "en"
+							},
+							{
+								"key": "cache-control",
+								"value": "no-cache"
+							},
+							{
+								"key": "pragma",
+								"value": "no-cache"
+							},
+							{
+								"key": "priority",
+								"value": "u=1, i"
+							},
+							{
+								"key": "referer",
+								"value": "https://elagi.semicorner.com/medicines"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Not)A;Brand\";v=\"8\", \"Chromium\";v=\"138\", \"Google Chrome\";v=\"138\""
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Windows\""
+							},
+							{
+								"key": "sec-fetch-dest",
+								"value": "empty"
+							},
+							{
+								"key": "sec-fetch-mode",
+								"value": "cors"
+							},
+							{
+								"key": "sec-fetch-site",
+								"value": "same-origin"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36"
+							},
+							{
+								"key": "Cookie",
+								"value": "i18next=en"
+							}
+						],
+						"url": {
+							"raw": "https://elagi.semicorner.com/api/medicines?page=1&sort=price_asc",
+							"protocol": "https",
+							"host": [
+								"elagi",
+								"semicorner",
+								"com"
+							],
+							"path": [
+								"api",
+								"medicines"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "sort",
+									"value": "price_asc"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Request",
+			"item": [
+				{
+					"name": "send request",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 1000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+									"});\r",
+									"pm.test(\"Verify that the user made a successful request\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.eql(\"Message sent successfully!\");\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/json, text/plain, */*"
+							},
+							{
+								"key": "accept-language",
+								"value": "en"
+							},
+							{
+								"key": "cache-control",
+								"value": "no-cache"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json"
+							},
+							{
+								"key": "origin",
+								"value": "https://elagi.semicorner.com"
+							},
+							{
+								"key": "pragma",
+								"value": "no-cache"
+							},
+							{
+								"key": "priority",
+								"value": "u=1, i"
+							},
+							{
+								"key": "referer",
+								"value": "https://elagi.semicorner.com/contact"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Not)A;Brand\";v=\"8\", \"Chromium\";v=\"138\", \"Google Chrome\";v=\"138\""
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Windows\""
+							},
+							{
+								"key": "sec-fetch-dest",
+								"value": "empty"
+							},
+							{
+								"key": "sec-fetch-mode",
+								"value": "cors"
+							},
+							{
+								"key": "sec-fetch-site",
+								"value": "same-origin"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36"
+							},
+							{
+								"key": "Cookie",
+								"value": "i18next=en"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"{{new name}}\",\r\n    \"email\": \"{{Email}}\",\r\n    \"message\": \"request rare med  and address is whatever\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://elagi.semicorner.com/api/contact/save"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Purchase",
+			"item": [
+				{
+					"name": "Buy one of first product",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 1000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+									"});\r",
+									"pm.test(\"Verify that the user can purchase an item successfully\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.eql(\"Product added to cart successfully!\");\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/json, text/plain, */*"
+							},
+							{
+								"key": "accept-language",
+								"value": "en"
+							},
+							{
+								"key": "authorization",
+								"value": "Bearer {{Token}}"
+							},
+							{
+								"key": "cache-control",
+								"value": "no-cache"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json"
+							},
+							{
+								"key": "origin",
+								"value": "https://elagi.semicorner.com"
+							},
+							{
+								"key": "pragma",
+								"value": "no-cache"
+							},
+							{
+								"key": "priority",
+								"value": "u=1, i"
+							},
+							{
+								"key": "referer",
+								"value": "https://elagi.semicorner.com/medicines"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Not)A;Brand\";v=\"8\", \"Chromium\";v=\"138\", \"Google Chrome\";v=\"138\""
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Windows\""
+							},
+							{
+								"key": "sec-fetch-dest",
+								"value": "empty"
+							},
+							{
+								"key": "sec-fetch-mode",
+								"value": "cors"
+							},
+							{
+								"key": "sec-fetch-site",
+								"value": "same-origin"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36"
+							},
+							{
+								"key": "Cookie",
+								"value": "i18next=en"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"product_id\":15,\"quantity\":1}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://elagi.semicorner.com/api/cart/add"
+					},
+					"response": []
+				},
+				{
+					"name": "Buy three of second product",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 1000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+									"});\r",
+									"pm.test(\"Verify that the user can purchase 3 items successfully\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.eql(\"Product added to cart successfully!\");\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/json, text/plain, */*"
+							},
+							{
+								"key": "accept-language",
+								"value": "en"
+							},
+							{
+								"key": "authorization",
+								"value": "Bearer {{Token}}"
+							},
+							{
+								"key": "cache-control",
+								"value": "no-cache"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json"
+							},
+							{
+								"key": "origin",
+								"value": "https://elagi.semicorner.com"
+							},
+							{
+								"key": "pragma",
+								"value": "no-cache"
+							},
+							{
+								"key": "priority",
+								"value": "u=1, i"
+							},
+							{
+								"key": "referer",
+								"value": "https://elagi.semicorner.com/medicines"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Not)A;Brand\";v=\"8\", \"Chromium\";v=\"138\", \"Google Chrome\";v=\"138\""
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Windows\""
+							},
+							{
+								"key": "sec-fetch-dest",
+								"value": "empty"
+							},
+							{
+								"key": "sec-fetch-mode",
+								"value": "cors"
+							},
+							{
+								"key": "sec-fetch-site",
+								"value": "same-origin"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36"
+							},
+							{
+								"key": "Cookie",
+								"value": "i18next=en"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"product_id\":18,\"quantity\":3}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://elagi.semicorner.com/api/cart/add"
+					},
+					"response": []
+				},
+				{
+					"name": "Get products id in the cart",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"ProductID\",pm.response.json()[0].id);\r",
+									"pm.environment.set(\"Second productID\",pm.response.json()[1].id);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/json, text/plain, */*"
+							},
+							{
+								"key": "accept-language",
+								"value": "en"
+							},
+							{
+								"key": "authorization",
+								"value": "Bearer {{Token}}"
+							},
+							{
+								"key": "cache-control",
+								"value": "no-cache"
+							},
+							{
+								"key": "pragma",
+								"value": "no-cache"
+							},
+							{
+								"key": "priority",
+								"value": "u=1, i"
+							},
+							{
+								"key": "referer",
+								"value": "https://elagi.semicorner.com/medicines"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Not)A;Brand\";v=\"8\", \"Chromium\";v=\"138\", \"Google Chrome\";v=\"138\""
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Windows\""
+							},
+							{
+								"key": "sec-fetch-dest",
+								"value": "empty"
+							},
+							{
+								"key": "sec-fetch-mode",
+								"value": "cors"
+							},
+							{
+								"key": "sec-fetch-site",
+								"value": "same-origin"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36"
+							},
+							{
+								"key": "Cookie",
+								"value": "i18next=en"
+							}
+						],
+						"url": "https://elagi.semicorner.com/api/cart"
+					},
+					"response": []
+				},
+				{
+					"name": "Change first product amount to 3",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 1000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+									"});\r",
+									"pm.test(\"Verify that the user can change the product amount\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.eql(\"Cart item updated successfully\");\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/json, text/plain, */*"
+							},
+							{
+								"key": "accept-language",
+								"value": "en"
+							},
+							{
+								"key": "authorization",
+								"value": "Bearer {{Token}}"
+							},
+							{
+								"key": "cache-control",
+								"value": "no-cache"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json"
+							},
+							{
+								"key": "origin",
+								"value": "https://elagi.semicorner.com"
+							},
+							{
+								"key": "pragma",
+								"value": "no-cache"
+							},
+							{
+								"key": "priority",
+								"value": "u=1, i"
+							},
+							{
+								"key": "referer",
+								"value": "https://elagi.semicorner.com/cart"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Not)A;Brand\";v=\"8\", \"Chromium\";v=\"138\", \"Google Chrome\";v=\"138\""
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Windows\""
+							},
+							{
+								"key": "sec-fetch-dest",
+								"value": "empty"
+							},
+							{
+								"key": "sec-fetch-mode",
+								"value": "cors"
+							},
+							{
+								"key": "sec-fetch-site",
+								"value": "same-origin"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36"
+							},
+							{
+								"key": "Cookie",
+								"value": "i18next=en"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"quantity\":3}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://elagi.semicorner.com/api/cart/{{ProductID}}"
+					},
+					"response": []
+				},
+				{
+					"name": "Change the second product to 9 Suppose to fail",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 1000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+									"});\r",
+									"pm.test(\"Verify that the user can't change the product amount to more than 3\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.eql(\"Cart item updated successfully\");\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/json, text/plain, */*"
+							},
+							{
+								"key": "accept-language",
+								"value": "en"
+							},
+							{
+								"key": "authorization",
+								"value": "Bearer {{Token}}"
+							},
+							{
+								"key": "cache-control",
+								"value": "no-cache"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json"
+							},
+							{
+								"key": "origin",
+								"value": "https://elagi.semicorner.com"
+							},
+							{
+								"key": "pragma",
+								"value": "no-cache"
+							},
+							{
+								"key": "priority",
+								"value": "u=1, i"
+							},
+							{
+								"key": "referer",
+								"value": "https://elagi.semicorner.com/cart"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Not)A;Brand\";v=\"8\", \"Chromium\";v=\"138\", \"Google Chrome\";v=\"138\""
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Windows\""
+							},
+							{
+								"key": "sec-fetch-dest",
+								"value": "empty"
+							},
+							{
+								"key": "sec-fetch-mode",
+								"value": "cors"
+							},
+							{
+								"key": "sec-fetch-site",
+								"value": "same-origin"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36"
+							},
+							{
+								"key": "Cookie",
+								"value": "i18next=en"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"quantity\":9}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://elagi.semicorner.com/api/cart/{{Second productID}}"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete second product",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 1000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+									"});\r",
+									"pm.test(\"Your test name\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.eql(\"Cart item removed successfully\");\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/json, text/plain, */*"
+							},
+							{
+								"key": "accept-language",
+								"value": "en"
+							},
+							{
+								"key": "authorization",
+								"value": "Bearer {{Token}}"
+							},
+							{
+								"key": "cache-control",
+								"value": "no-cache"
+							},
+							{
+								"key": "origin",
+								"value": "https://elagi.semicorner.com"
+							},
+							{
+								"key": "pragma",
+								"value": "no-cache"
+							},
+							{
+								"key": "priority",
+								"value": "u=1, i"
+							},
+							{
+								"key": "referer",
+								"value": "https://elagi.semicorner.com/cart"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Not)A;Brand\";v=\"8\", \"Chromium\";v=\"138\", \"Google Chrome\";v=\"138\""
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Windows\""
+							},
+							{
+								"key": "sec-fetch-dest",
+								"value": "empty"
+							},
+							{
+								"key": "sec-fetch-mode",
+								"value": "cors"
+							},
+							{
+								"key": "sec-fetch-site",
+								"value": "same-origin"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36"
+							},
+							{
+								"key": "Cookie",
+								"value": "i18next=en"
+							}
+						],
+						"url": "https://elagi.semicorner.com/api/cart/{{Second productID}}"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Procced with purchase",
+			"item": [
+				{
+					"name": "New Request",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response time is less than 1000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+									"});\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Your test name\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.eql(\"Order placed successfully\");\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/json, text/plain, */*"
+							},
+							{
+								"key": "accept-language",
+								"value": "en"
+							},
+							{
+								"key": "authorization",
+								"value": "Bearer {{Token}}"
+							},
+							{
+								"key": "cache-control",
+								"value": "no-cache"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json"
+							},
+							{
+								"key": "origin",
+								"value": "https://elagi.semicorner.com"
+							},
+							{
+								"key": "pragma",
+								"value": "no-cache"
+							},
+							{
+								"key": "priority",
+								"value": "u=1, i"
+							},
+							{
+								"key": "referer",
+								"value": "https://elagi.semicorner.com/checkout"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Not)A;Brand\";v=\"8\", \"Chromium\";v=\"138\", \"Google Chrome\";v=\"138\""
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Windows\""
+							},
+							{
+								"key": "sec-fetch-dest",
+								"value": "empty"
+							},
+							{
+								"key": "sec-fetch-mode",
+								"value": "cors"
+							},
+							{
+								"key": "sec-fetch-site",
+								"value": "same-origin"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36"
+							},
+							{
+								"key": "Cookie",
+								"value": "i18next=en"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"address\":\"wfwf\",\"paymentMethod\":\"cash\",\"cartItems\":[{\"id\":3506,\"user_id\":2851,\"product_id\":9,\"quantity\":3,\"created_at\":\"2025-07-23T01:39:28.000000Z\",\"updated_at\":\"2025-07-23T01:49:53.000000Z\",\"product\":{\"id\":9,\"name\":\"Histazine-1 10mg 20 Tablet\",\"name_ar\":\"^ه^ي^س^ت^ا^ز^ي^ن-1 10 ^م^ج^م - 20 ^ق^ر^ص\",\"category\":\"General\",\"category_ar\":\"^ع^ا^م\",\"description\":\"- Medical Description:These tablets contain the active ingredient Cetirizine and are used systemically for various conditions.\\n\\n- Composition: Each tablet contains Cetirizine.\\n\\n- Usage: They are utilized for the temporary relief of symptoms associated with upper respiratory allergies, such as sneezing and nasal congestion. Additionally, they relieve itching due to urticaria (hives) and treat ocular itching associated with allergic conjunctivitis.\\n\\n- Dosage: The recommended dosage varies depending on the specific condition being treated and the patient's age. Generally, for upper respiratory allergies and urticaria, the typical adult dosage is 10 mg orally once daily. For children, the dosage may be adjusted based on their age and weight. For allergic conjunctivitis, the dosage may vary depending on the formulation (e.g., oral vs. ophthalmic). It's important to follow the dosage instructions provided by the physician or as indicated on the medication label.\\n\\n- Precautions: Patients should adhere to the prescribed dosage and consult their physician for any concerns or adjustments. It's important to follow medical advice regarding the use of these tablets, especially in cases of prolonged usage or underlying health conditions.\",\"description_ar\":\"- ^ا^ل^و^ص^ف ^ا^ل^ط^ب^ي: ^ت^ح^ت^و^ي ^ه^ذ^ه ^ا^ل^أ^ق^ر^ا^ص ^ع^ل^ى ^ا^ل^م^ا^د^ة ^ا^ل^ف^ع^ا^ل^ة ^ا^ل^س^ي^ت^ر^ي^ز^ي^ن ^و^ت^س^ت^خ^د^م ^ب^ش^ك^ل ^ن^ظ^ا^م^ي ^ل^ح^ا^ل^ا^ت ^م^خ^ت^ل^ف^ة.\\n\\n- ^ا^ل^ت^ر^ك^ي^ب: ^ك^ل ^ق^ر^ص ^ي^ح^ت^و^ي ^ع^ل^ى ^ا^ل^س^ي^ت^ر^ي^ز^ي^ن.\\n\\n- ^ا^ل^ا^س^ت^خ^د^ا^م: ^ي^ت^م ^ا^س^ت^خ^د^ا^م^ه^ا ^ل^ل^ت^خ^ف^ي^ف ^ا^ل^م^ؤ^ق^ت ^م^ن ^ا^ل^أ^ع^ر^ا^ض ^ا^ل^م^ر^ت^ب^ط^ة ^ب^ح^س^ا^س^ي^ة ^ا^ل^ج^ه^ا^ز ^ا^ل^ت^ن^ف^س^ي ^ا^ل^ع^ل^و^ي^، ^م^ث^ل ^ا^ل^ع^ط^س ^و^ا^ح^ت^ق^ا^ن ^ا^ل^أ^ن^ف. ^ب^ا^ل^إ^ض^ا^ف^ة ^إ^ل^ى ^ذ^ل^ك^، ^ف^إ^ن^ه^ا ^ت^خ^ف^ف ^ا^ل^ح^ك^ة ^ا^ل^ن^ا^ت^ج^ة ^ع^ن ^ا^ل^ش^ر^ى ^و^ت^ع^ا^ل^ج ^ا^ل^ح^ك^ة ^ا^ل^ع^ي^ن^ي^ة ^ا^ل^م^ر^ت^ب^ط^ة ^ب^ا^ل^ت^ه^ا^ب ^ا^ل^م^ل^ت^ح^م^ة ^ا^ل^ت^ح^س^س^ي.\\n\\n- ^ا^ل^ج^ر^ع^ة: ^ا^ل^ج^ر^ع^ة ^ا^ل^م^و^ص^ى ^ب^ه^ا ^ت^خ^ت^ل^ف ^ت^ب^ع^ا ^ل^ل^ح^ا^ل^ة ^ا^ل^م^ح^د^د^ة ^ا^ل^ت^ي ^ي^ت^م ^ع^ل^ا^ج^ه^ا ^و^ع^م^ر ^ا^ل^م^ر^ي^ض. ^ب^ش^ك^ل ^ع^ا^م^، ^ب^ا^ل^ن^س^ب^ة ^ل^ح^س^ا^س^ي^ة ^ا^ل^ج^ه^ا^ز ^ا^ل^ت^ن^ف^س^ي ^ا^ل^ع^ل^و^ي ^و^ا^ل^ش^ر^ى^، ^ا^ل^ج^ر^ع^ة ^ا^ل^ن^م^و^ذ^ج^ي^ة ^ل^ل^ب^ا^ل^غ^ي^ن ^ه^ي 10 ^م^ل^غ ^ع^ن ^ط^ر^ي^ق ^ا^ل^ف^م ^م^ر^ة ^و^ا^ح^د^ة ^ي^و^م^ي^ً^ا. ^ب^ا^ل^ن^س^ب^ة ^ل^ل^أ^ط^ف^ا^ل^، ^ي^م^ك^ن ^ت^ع^د^ي^ل ^ا^ل^ج^ر^ع^ة ^ب^ن^ا^ء^ً ^ع^ل^ى ^ع^م^ر^ه^م ^و^و^ز^ن^ه^م. ^ب^ا^ل^ن^س^ب^ة ^ل^ا^ل^ت^ه^ا^ب ^ا^ل^م^ل^ت^ح^م^ة ^ا^ل^ت^ح^س^س^ي^، ^ق^د ^ت^خ^ت^ل^ف ^ا^ل^ج^ر^ع^ة ^ا^ع^ت^م^ا^د^ً^ا ^ع^ل^ى ^ا^ل^ت^ر^ك^ي^ب^ة (^ع^ل^ى ^س^ب^ي^ل ^ا^ل^م^ث^ا^ل^، ^ع^ن ^ط^ر^ي^ق ^ا^ل^ف^م ^م^ق^ا^ب^ل ^ا^ل^ع^ي^و^ن). ^م^ن ^ا^ل^م^ه^م ^ا^ت^ب^ا^ع ^ت^ع^ل^ي^م^ا^ت ^ا^ل^ج^ر^ع^ة ^ا^ل^ت^ي ^ي^ق^د^م^ه^ا ^ا^ل^ط^ب^ي^ب ^أ^و ^ك^م^ا ^ه^و ^م^و^ض^ح ^ع^ل^ى ^م^ل^ص^ق ^ا^ل^د^و^ا^ء.\\n\\n- ^ا^ل^ا^ح^ت^ي^ا^ط^ا^ت: ^ي^ج^ب ^ع^ل^ى ^ا^ل^م^ر^ض^ى ^ا^ل^ا^ل^ت^ز^ا^م ^ب^ا^ل^ج^ر^ع^ة ^ا^ل^م^و^ص^و^ف^ة ^و^ا^س^ت^ش^ا^ر^ة ^ا^ل^ط^ب^ي^ب ^ف^ي ^ح^ا^ل^ة ^و^ج^و^د ^أ^ي ^م^خ^ا^و^ف ^أ^و ^ت^ع^د^ي^ل^ا^ت. ^م^ن ^ا^ل^م^ه^م ^ا^ت^ب^ا^ع ^ا^ل^ن^ص^ا^ئ^ح ^ا^ل^ط^ب^ي^ة ^ف^ي^م^ا ^ي^ت^ع^ل^ق ^ب^ا^س^ت^خ^د^ا^م ^ه^ذ^ه ^ا^ل^أ^ق^ر^ا^ص^، ^خ^ا^ص^ة ^ف^ي ^ح^ا^ل^ا^ت ^ا^ل^ا^س^ت^خ^د^ا^م ^ل^ف^ت^ر^ة ^ط^و^ي^ل^ة ^أ^و ^ا^ل^ح^ا^ل^ا^ت ^ا^ل^ص^ح^ي^ة ^ا^ل^أ^س^ا^س^ي^ة.\",\"price\":\"43.00\",\"stock\":3,\"alternative_medicine_id\":null,\"image_url\":\"histazine.jpg\",\"created_at\":\"2024-05-06T19:29:06.000000Z\",\"updated_at\":\"2025-07-15T14:04:12.000000Z\"}},{\"id\":3507,\"user_id\":2851,\"product_id\":45,\"quantity\":3,\"created_at\":\"2025-07-23T01:40:26.000000Z\",\"updated_at\":\"2025-07-23T01:42:05.000000Z\",\"product\":{\"id\":45,\"name\":\"Antinal 200 mg 24 Capsules\",\"name_ar\":\"^ا^ن^ت^ي^ن^ا^ل 200 ^م^ج^م 24 ^ك^ب^س^و^ل^ة\",\"category\":\"Gastroenterology\",\"category_ar\":\"^ا^ل^ج^ه^ا^ز ^ا^ل^ه^ض^م^ي\",\"description\":\"- Medical Description: Capsules with an intestinal antiseptic effect, each containing 200 mg of Nitrofurazone.\\r\\n\\r\\n- Usage: Suspicion of acute diarrhea due to bacteria.\\r\\n\\r\\n- Dosage: For adults: One capsule four times daily for no more than 7 days or as directed by the physician.\",\"description_ar\":\"- ^ا^ل^و^ص^ف ^ا^ل^ط^ب^ي: ^ك^ب^س^و^ل^ا^ت ^ذ^ا^ت ^ت^أ^ث^ي^ر ^م^ط^ه^ر ^ل^ل^أ^م^ع^ا^ء^، ^ت^ح^ت^و^ي ^ك^ل ^م^ن^ه^ا ^ع^ل^ى 200 ^م^ل^غ ^م^ن ^ن^ي^ت^ر^و^ف^و^ر^ا^ز^و^ن.\\r\\n\\r\\n- ^ا^ل^ا^س^ت^ع^م^ا^ل: ^ا^ش^ت^ب^ا^ه ^ف^ي ^ح^د^و^ث ^إ^س^ه^ا^ل ^ح^ا^د ^ب^س^ب^ب ^ا^ل^ب^ك^ت^ي^ر^ي^ا.\\r\\n\\r\\n- ^ا^ل^ج^ر^ع^ة: ^ل^ل^ب^ا^ل^غ^ي^ن: ^ك^ب^س^و^ل^ة ^و^ا^ح^د^ة ^أ^ر^ب^ع ^م^ر^ا^ت ^ي^و^م^ي^ا^ً ^ل^م^د^ة ^ل^ا ^ت^ز^ي^د ^ع^ن 7 ^أ^ي^ا^م ^أ^و ^ح^س^ب ^إ^ر^ش^ا^د^ا^ت ^ا^ل^ط^ب^ي^ب.\",\"price\":\"36.00\",\"stock\":15,\"alternative_medicine_id\":null,\"image_url\":\"antinal.jpg\",\"created_at\":\"2024-05-28T08:25:48.000000Z\",\"updated_at\":\"2024-05-28T08:25:48.000000Z\"}},{\"id\":3508,\"user_id\":2851,\"product_id\":15,\"quantity\":3,\"created_at\":\"2025-07-23T01:40:45.000000Z\",\"updated_at\":\"2025-07-23T01:42:08.000000Z\",\"product\":{\"id\":15,\"name\":\"Flixonase nasal spray\",\"name_ar\":\"^ف^ل^ي^ك^س^و^ن^ي^ز ^ب^خ^ا^خ ^ا^ن^ف\",\"category\":\"Nose\",\"category_ar\":\"^ا^ل^أ^ن^ف\",\"description\":\"- Medical Description: This nasal spray is used to treat sinusitis.\\r\\n\\r\\n- Composition: It contains a concentration of 0.05^% Fluticasone.\\r\\n\\r\\n- Usage: It is utilized for the treatment of chronic or seasonal sinusitis.\\r\\n\\r\\n- Dosage: The usual dosage is 2 sprays into each nostril once daily or as prescribed by the treating physician.\\r\\n\\r\\n- Packaging: Each pack contains 120 sprays.\",\"description_ar\":\"- ^ا^ل^و^ص^ف ^ا^ل^ط^ب^ي: ^ي^س^ت^خ^د^م ^ه^ذ^ا ^ا^ل^ب^خ^ا^خ ^ا^ل^أ^ن^ف^ي ^ل^ع^ل^ا^ج ^ا^ل^ت^ه^ا^ب ^ا^ل^ج^ي^و^ب ^ا^ل^أ^ن^ف^ي^ة.\\r\\n\\r\\n- ^ا^ل^ت^ر^ك^ي^ب: ^ي^ح^ت^و^ي ^ع^ل^ى ^ت^ر^ك^ي^ز 0.05^% ^ف^ل^و^ت^ي^ك^ا^س^و^ن.\\r\\n\\r\\n- ^ا^ل^ا^س^ت^خ^د^ا^م: ^ي^س^ت^خ^د^م ^ل^ع^ل^ا^ج ^ا^ل^ت^ه^ا^ب ^ا^ل^ج^ي^و^ب ^ا^ل^أ^ن^ف^ي^ة ^ا^ل^م^ز^م^ن ^أ^و ^ا^ل^م^و^س^م^ي.\\r\\n\\r\\n- ^ا^ل^ج^ر^ع^ة: ^ا^ل^ج^ر^ع^ة ^ا^ل^م^ع^ت^ا^د^ة ^ه^ي ^ب^خ^ت^ي^ن ^ف^ي ^ك^ل ^ف^ت^ح^ة ^أ^ن^ف ^م^ر^ة ^و^ا^ح^د^ة ^ي^و^م^ي^ا^ً ^أ^و ^ح^س^ب ^إ^ر^ش^ا^د^ا^ت ^ا^ل^ط^ب^ي^ب ^ا^ل^م^ع^ا^ل^ج.\\r\\n\\r\\n- ^ا^ل^ت^ع^ب^ئ^ة ^و^ا^ل^ت^غ^ل^ي^ف: ^ت^ح^ت^و^ي ^ك^ل ^ع^ب^و^ة ^ع^ل^ى 120 ^ب^خ^ة.\",\"price\":\"90.00\",\"stock\":115,\"alternative_medicine_id\":null,\"image_url\":\"flixonase.jpg\",\"created_at\":null,\"updated_at\":null}}]}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://elagi.semicorner.com/api/checkout"
+					},
+					"response": []
+				},
+				{
+					"name": "Order history",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 1000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+									"});\r",
+									"pm.test(\"Verify that purchase method is cash\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[0].payment_method).to.eql(\"cash\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/json, text/plain, */*"
+							},
+							{
+								"key": "accept-language",
+								"value": "en"
+							},
+							{
+								"key": "authorization",
+								"value": "Bearer {{Token}}"
+							},
+							{
+								"key": "cache-control",
+								"value": "no-cache"
+							},
+							{
+								"key": "pragma",
+								"value": "no-cache"
+							},
+							{
+								"key": "priority",
+								"value": "u=1, i"
+							},
+							{
+								"key": "referer",
+								"value": "https://elagi.semicorner.com/order"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Not)A;Brand\";v=\"8\", \"Chromium\";v=\"138\", \"Google Chrome\";v=\"138\""
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Windows\""
+							},
+							{
+								"key": "sec-fetch-dest",
+								"value": "empty"
+							},
+							{
+								"key": "sec-fetch-mode",
+								"value": "cors"
+							},
+							{
+								"key": "sec-fetch-site",
+								"value": "same-origin"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36"
+							},
+							{
+								"key": "Cookie",
+								"value": "i18next=en"
+							}
+						],
+						"url": "https://elagi.semicorner.com/api/orders"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

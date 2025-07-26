@@ -43,7 +43,7 @@ This project showcases **API testing** performed on the [Elagi website](https://
 
 ## 📁 Exported Files
 
-- ✅ `Elagi_API_Testing.postman_collection.json` – Full collection with requests and test scripts.
+- ✅ `API Elagi.postman_collection.json` – Full collection with requests and test scripts.
 - ❗ `Elagi_environment.postman_environment.json` – Optional environment file for context.
 
 > ⚠️ Note: The environment file contains placeholder values. Real-time authentication still relies on dynamic token generation during runtime.

@@ -56,7 +56,7 @@ This project showcases **API testing** performed on the [Elagi website](https://
 2. Import both:
    - `Elagi_API_Testing.postman_collection.json`
    - `Elagi_environment.postman_environment.json` (optional)
-3. Run the **Login request** first before any purchase or patch to generate the token.
+3. Run the Login request first to generate the token before making any authenticated (purchase or update) requests.
 4. Use **Collection Runner** to run the full test suite.
 5. Review test results, console logs, and dynamic behavior in the Postman UI.
 
@@ -78,12 +78,12 @@ While testing the ELAGI API, I noticed a few issues worth documenting:
 1. **Broken Arabic Product Descriptions:**
    - When sending a `GET` request to fetch product details, some products return broken or unreadable Arabic text in the `description_ar` field.
 
-2. **POST Request Allows Out-of-Stock Products:**
+2. **Out-of-Stock Products Can Be Added via API:**
    - The UI correctly prevents adding out-of-stock products to the cart.
    - However, when using Postman to send a `POST` request to add such a product, the request succeeds and adds the product.
    - This inconsistency could lead to broken logic or user frustration.
 
-3. **POST Request Allows to purchase more than 3 Product from the same type:**
+3. **Quantity Limit Bypass via API:**
    -The UI correctly prevents adding more than 3 from the same product to the cart.
    -However, when using Postman to send a `POST` request to add such a product, the request succeeds and adds the product by changing the quentatiy from the body .
    -This could lead to problem in the purchase process

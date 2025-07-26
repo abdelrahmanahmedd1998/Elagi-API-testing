@@ -71,3 +71,22 @@ This project showcases **API testing** performed on the [Elagi website](https://
 
 ---
 
+## ⚠️ Observed Issues / API Bugs
+
+While testing the ELAGI API, I noticed a few issues worth documenting:
+
+1. **Broken Arabic Product Descriptions:**
+   - When sending a `GET` request to fetch product details, some products return broken or unreadable Arabic text in the `description_ar` field.
+
+2. **POST Request Allows Out-of-Stock Products:**
+   - The UI correctly prevents adding out-of-stock products to the cart.
+   - However, when using Postman to send a `POST` request to add such a product, the request succeeds and adds the product.
+   - This inconsistency could lead to broken logic or user frustration.
+
+3. **POST Request Allows to purchase more than 3 Product from the same type:**
+   -The UI correctly prevents adding more than 3 from the same product to the cart.
+   -However, when using Postman to send a `POST` request to add such a product, the request succeeds and adds the product by changing the quentatiy from the body .
+   -This could lead to problem in the purchase process
+
+These bugs highlight potential mismatches between frontend validation and backend enforcement.
+
